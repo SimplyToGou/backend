@@ -21,9 +21,16 @@ def load_departments():
     return productos["departamentos"]
 
 
+def load_sizes():
+    with open("../data/productos_sizes.json", "r") as archivo:
+        productos = json.load(archivo)
+    return productos
+
+
 products = load_products()
 categories = load_categories()
 departamentos = load_departments()
+sizes = load_sizes()
 app = FastAPI()
 
 
@@ -54,7 +61,9 @@ def get_products_from_category(category_id: int):
 # Devolver los tamaños de un producto
 @app.get("/product_sizes/")
 def get_product_sizes(product_id: int):
-    return
+    print(sizes)
+    return {"tamanos": sizes[str(product_id)]}
+
 
 # Agregar un producto a la cesta
 @app.post("/add_product/")
