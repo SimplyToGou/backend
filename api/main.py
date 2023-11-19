@@ -2,6 +2,7 @@ import json
 
 from fastapi import FastAPI, Request
 import utils
+from fastapi.middleware.cors import CORSMiddleware
 
 
 def load_products():
@@ -33,6 +34,18 @@ categories = load_categories()
 departamentos = load_departments()
 sizes = load_sizes()
 app = FastAPI()
+
+origins = [
+    "http://localhost:3000",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 # Devolver todos los productos de la comuna
