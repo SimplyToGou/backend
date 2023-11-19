@@ -1,6 +1,7 @@
 import json
 
 from fastapi import FastAPI, Request
+import utils
 
 
 def load_products():
@@ -70,8 +71,22 @@ def get_product_sizes(product_id: int):
 def add_product(data: Request):
     return
 
-# Devolver el listado de supermercados, de menor a mayor precio, dada la cesta actual, con su precio correspondiente
 
+@app.post("/stock/")
+def get_stock(data: Request):
+    return
+
+# Devolver el listado de supermercados, de menor a mayor precio, dada la cesta actual, con su precio correspondiente
+@app.post("/results/")
+def get_results(data: Request):
+    """
+    productos: [
+    {prod 1},
+    {prod 2},
+    ...
+    ]
+    """
+    return utils.request_min_list(data["productos"])
 
 
 
