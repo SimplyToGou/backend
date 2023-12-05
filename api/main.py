@@ -91,7 +91,7 @@ def get_stock(data: Request):
 
 # Devolver el listado de supermercados, de menor a mayor precio, dada la cesta actual, con su precio correspondiente
 @app.post("/results/")
-def get_results(data: Request):
+async def get_results(data: Request):
     """
     productos: [
     {prod 1},
@@ -99,7 +99,9 @@ def get_results(data: Request):
     ...
     ]
     """
-    return utils.request_min_list(data["productos"])
+
+    dta = await data.json()
+    return utils.request_min_list(dta["productos"])
 
 
 

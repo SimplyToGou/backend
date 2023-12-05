@@ -10,7 +10,7 @@ def request_min_list(nfo):
     }
     respuesta = json.loads(requests.post(URL, json = req).content)
 
-
+    print(respuesta)
     resultado = []
     for supermercado in respuesta:
         resultado.append({
@@ -20,11 +20,6 @@ def request_min_list(nfo):
             "precio_f": supermercado["precio_format"]
         })
     return resultado
-
-
-
-def request_stock(nfo):
-    pass
 
 
 if __name__ == "__main__":
